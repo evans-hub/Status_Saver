@@ -36,7 +36,7 @@ Project is created with:
 
 ## Setup
 To run the Status Saver Android app project, please follow the instructions below:
-    * clone the project or download the project from the GitHub repository [here](https://github.com/evans-hub/work-allocation.git).
+    * clone the project or download the project from the GitHub repository [here](https://github.com/evans-hub/Status_Saver.git).
 to your local machine.    
     * Set up Android Studio: Ensure that you have Android Studio installed on your computer. If not, download and install the latest version from  [official](https://developer.android.com/studio) [website](https://developer.android.com/studio).    
     * Open the project in Android Studio: Open Android Studio and select "Open an existing Android Studio project" option. Browse to the project directory and select the "build.gradle" file.    
