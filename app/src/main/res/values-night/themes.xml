@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Status_Saver" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#075E54</item>
+<!--        <item name="colorPrimary">#075E54</item>-->
         <item name="colorPrimaryVariant">#075E54</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -12,5 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 </resources>

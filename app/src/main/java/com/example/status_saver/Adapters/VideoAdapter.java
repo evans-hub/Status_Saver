@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.status_saver.Config.Constants;
 import com.example.status_saver.Entities.Model;
+import com.example.status_saver.NextImageActivity;
+import com.example.status_saver.NextVideoActivity;
 import com.example.status_saver.R;
-import com.example.status_saver.fragments.ImageFragments;
 import com.example.status_saver.fragments.VideoFragments;
 
 import java.io.File;
@@ -103,7 +104,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     public void share(String path) {
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("image/jpg");
+        intent.setType("ivideo/mp4");
         intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
         context.startActivity(Intent.createChooser(intent, "Share using"));
     }
@@ -135,7 +136,16 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                     copyFileOrDirectory(model.getFilePath(), Constants.APP_DIR);
                 }
             });
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Model model = videoList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, NextVideoActivity.class);
+                    intent.putExtra("video", model.getFilePath());
+                    intent.putExtra("type", model.isVideo());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

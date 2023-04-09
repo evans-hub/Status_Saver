@@ -42,7 +42,7 @@ public class Splashscreen extends AppCompatActivity {
             }
 
             if (isAllPermissionsGranted) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Splas.class);
                 startActivity(intent);
                 finish();
             } else {

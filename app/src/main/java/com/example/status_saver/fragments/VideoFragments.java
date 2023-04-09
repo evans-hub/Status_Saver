@@ -1,12 +1,7 @@
 package com.example.status_saver.fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.status_saver.Adapters.VideoAdapter;
 import com.example.status_saver.Config.Constants;
@@ -31,11 +27,13 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class VideoFragments extends Fragment {
+public class VideoFragments extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     @BindView(R.id.recyclervideo)
     RecyclerView recyclerView;
     @BindView(R.id.progressvideo)
     ProgressBar loading;
+    @BindView(R.id.refreshv)
+    SwipeRefreshLayout swipe;
     ArrayList<Model> videoArrayList;
     Handler handler = new Handler();
     VideoAdapter videoAdapter;
@@ -54,6 +52,7 @@ public class VideoFragments extends Fragment {
         videoArrayList = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        swipe.setOnRefreshListener(this);
         getVideoStatus();
     }
 
@@ -89,13 +88,11 @@ public class VideoFragments extends Fragment {
             loading.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Oops Directory Doesn't exist!!!", Toast.LENGTH_SHORT).show();
         }
+        swipe.setRefreshing(false);
     }
 
-    private Bitmap getThumbnail(Model model) {
-        if (model.isVideo()) {
-            return ThumbnailUtils.createVideoThumbnail(model.getFile().getAbsolutePath(), MediaStore.Video.Thumbnails.MICRO_KIND);
-        } else {
-            return ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(model.getFile().getAbsolutePath()), Constants.THUMBSIZE, Constants.THUMBSIZE);
-        }
+    @Override
+    public void onRefresh() {
+//        getVideoStatus();
     }
 }

@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.status_saver.Config.Constants;
 import com.example.status_saver.Entities.Model;
+import com.example.status_saver.NextImageActivity;
 import com.example.status_saver.R;
 import com.example.status_saver.fragments.ImageFragments;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -135,6 +135,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 public void onClick(View view) {
                     Model model = imagelist.get(getAdapterPosition());
                     copyFileOrDirectory(model.getFilePath(), Constants.APP_DIR);
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Model model = imagelist.get(getAdapterPosition());
+                    Intent intent = new Intent(context, NextImageActivity.class);
+                    intent.putExtra("image", model.getFilePath());
+                    intent.putExtra("type", model.isVideo());
+                    context.startActivity(intent);
                 }
             });
 
